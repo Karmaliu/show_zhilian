@@ -12,7 +12,7 @@ def db():
     client = DbMongo()
     jobs = client.find_all_from_collect("jobs")
     companys = client.find_all_from_collect("company")
-    relations = client.find_all_from_collect("relation", ("_id", "job_id", "company_id"))
+    relations = client.find_all_from_collect("relation", filter_keys=("_id", "job_id", "company_id"))
     end_time = datetime.timestamp(datetime.utcnow())
     return jsonify(
         {"jobs": jobs, "companys": companys, "relations": relations, "time": end_time - start_time})

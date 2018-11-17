@@ -1,11 +1,9 @@
-import os
-
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Shell
 
 from src.app import create_all, sql_db
 
-app = create_all(os.getenv('FLASK_CONFIG') or 'default')
+app = create_all()
 manager = Manager(app)
 migrate = Migrate(app, sql_db)
 

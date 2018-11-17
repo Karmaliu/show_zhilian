@@ -1,6 +1,7 @@
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+config_name = os.getenv("FLASK_ENV") or "default"
 
 
 class Config:
@@ -32,6 +33,13 @@ class Config:
     CKEDITOR_PKG_TYPE = "basic"
     filebrowserUploadUrl = "/upload/ckeditor/"
     ##mongo
+    MONGO_SERVER = {
+        "host": "server.asppj.top",
+        "port": 27017,
+        "db": "zhilian",
+        "user": "zhilian_db",
+        "pwd": "zhilian_db123"
+    }
 
 
 class DevelopmentConfig(Config):
@@ -58,9 +66,9 @@ class ProductionConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
-config = {
+setting = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
     'prodection': ProductionConfig,
     'default': DevelopmentConfig
-}
+}.get(config_name, DevelopmentConfig)
