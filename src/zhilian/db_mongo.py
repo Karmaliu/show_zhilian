@@ -10,10 +10,10 @@ class DbMongo():
         db_name = mongo_server["db"]
         self.db = db_client[db_name]
 
-    def find_all_from_collect(self, collect_name, query=None, filter_keys=("_id",), limit=10):
+    def find_all_from_collect(self, collect_name, query=None, filter_keys=("_id",), skip=0, limit=10):
         if not query:
             query = {}
         filter_dict = {key: False for key in filter_keys}
-        items = self.db[collect_name].find(query, filter_dict).limit(limit)
+        items = self.db[collect_name].find(query, filter_dict).limit(limit).skip(skip)
         rsp = [item for item in items]
         return rsp
