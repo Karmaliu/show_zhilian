@@ -3,15 +3,15 @@ import os
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Shell
 
-from src.app import create_all, sql_db as db
+from src.app import create_all, sql_db
 
 app = create_all(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app, sql_db)
 
 
 def make_shell_context():
-    return dict(app=app, db=db)
+    return dict(app=app, db=sql_db)
 
 
 manager.add_command("shell", Shell(make_context=make_shell_context))

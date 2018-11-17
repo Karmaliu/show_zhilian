@@ -5,6 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+    JSON_AS_ASCII = False
     ##国际化
     BABEL_DEFAULT_LOCALE = 'zh_CN'
     ##自动提交数据库orm
@@ -31,11 +32,6 @@ class Config:
     CKEDITOR_PKG_TYPE = "basic"
     filebrowserUploadUrl = "/upload/ckeditor/"
     ##mongo
-    MONGO_URI = "mongodb://server.asppj.top:27017/zhilian"
-    MONGO_HOST = "106.12.207.35"
-    MONGO_PORT = 27017
-    MONGO_USERNAME = "zhilian_db"
-    MONGO_PASSWORD = "zhilian_db123"
 
 
 class DevelopmentConfig(Config):

@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
-from flask_pymongo import PyMongo
+# from flask_pymongo import PyMongo
 from flask_sqlalchemy import SQLAlchemy
 
 from config import config
@@ -8,9 +8,7 @@ from src.regist_app import regist_app
 from .mail import mail
 
 sql_db = SQLAlchemy()
-mongo_db = PyMongo()
 login_manager = LoginManager()
-
 
 def create_all(config_name):
     ##初始化app
@@ -19,7 +17,7 @@ def create_all(config_name):
     app.config.from_object(config[config_name])
     # ##数据库
     # sql_db.init_app(app)
-    mongo_db.init_app(app)
+    # mongo_db.init_app(app)
     # ##界面ui
     # Bootstrap(app)
     # ##国际化
